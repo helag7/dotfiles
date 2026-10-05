@@ -33,6 +33,7 @@ set backspace=indent,eol,start
 set splitbelow
 set splitright
 
+set clipboard=unnamedplus
 
 let mapleader = " "
 
@@ -45,22 +46,4 @@ Plug 'junegunn/fzf', {'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-
 call plug#end()
-
-function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    nmap <buffer> gd <plug>(lsp-definition)
-    nmap <buffer> gD <plug>(lsp-declaration)
-    nmap <buffer> K <plug>(lsp-hover)
-    nmap <buffer> <leader>rn <plug>(lsp-rename)
-endfunction
-
-augroup lsp_install
-    au!
-    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
